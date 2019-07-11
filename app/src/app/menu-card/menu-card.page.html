@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Menu
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addNewMenuCard()">
+        <ion-icon name="create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card button (click)="cardClicked(card)" *ngFor="let card of menuCards">
+    <ion-card-header>
+      <ion-card-subtitle>{{ card.Title }}</ion-card-subtitle>
+      <ion-card-title>
+        <img src="assets/image/{{ card.Image }}">
+      </ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{ card.Description }}
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>
