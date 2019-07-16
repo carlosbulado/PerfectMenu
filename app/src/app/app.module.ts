@@ -18,6 +18,7 @@ import { UtilsModule } from 'src/utils/utils.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken } from 'angularfire2/firestore';
 import { environment } from 'src/environments/environment';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +34,8 @@ import { environment } from 'src/environments/environment';
     ServiceModule,
     RepositoryModule,
     UtilsModule,
-    HttpClientModule
+    HttpClientModule,
+    ComponentsModule
   ],
   providers:
   [

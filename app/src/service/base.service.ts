@@ -18,6 +18,7 @@ export abstract class BaseService<T extends Entity>
 
     public getAll(): Observable<T[]>
     {
+        return null;
         let obs = this._repository.getAll();
         obs.subscribe(entries =>{
             this.entries = entries;
@@ -30,6 +31,7 @@ export abstract class BaseService<T extends Entity>
     
     public getById(guid : string) : T
     {
+        return null;
         //return this._repository.getById(guid);
         let entry = this.entries.filter(x => x.Guid == guid)[0];
         console.log('SERVICE - GETTING ENTRY OF ' + (entry ? entry.constructor.name : 'Nothing'));
@@ -38,12 +40,10 @@ export abstract class BaseService<T extends Entity>
     
     public async save(object : T) : Promise<T>
     {
-        if(object.Guid) { await this.update(object); }
-        else
-        {
-            object.Guid = Guid.newGuid();
-            await this.add(object);
-        }
+        return null;
+        if(!object.isNewEntry()) await this.update(object);
+        else await this.add(object);
+        
         return object;
     }
 

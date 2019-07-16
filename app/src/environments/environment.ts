@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyD1qYqpriksleTxw01vChMVThu7r44oHsc",
+    authDomain: "perfectmenu-eb3a2.firebaseapp.com",
+    databaseURL: "https://perfectmenu-eb3a2.firebaseio.com",
+    projectId: "perfectmenu-eb3a2",
+    storageBucket: "",
+    messagingSenderId: "350921188483",
+    appId: "1:350921188483:web:78bbded0de483b44"
+  }
  };
 
 /*
