@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { MenuCard } from 'src/models/menucard';
-import { PerfectNavigation } from 'src/utils/perfect-navigation';
 import { BasePage } from '../base.page';
 import { MenuCardService } from 'src/service/menucard.service';
-import { PerfectAlert } from 'src/utils/perfect-alert';
+import { PageUtil } from 'src/utils/page-util';
 
 @Component({
   selector: 'page-menu-card',
@@ -14,22 +13,22 @@ export class MenuCardPage extends BasePage
 {
   public menuCards : MenuCard[];
 
-  constructor(protected navigation : PerfectNavigation, private mcServ : MenuCardService, protected _alerts : PerfectAlert)
+  constructor(protected _pageUtils : PageUtil, private mcServ : MenuCardService)
   {
-    super(navigation, _alerts);
+    super(_pageUtils);
   }
 
   public async cardClicked(card : MenuCard) : Promise<void>
   {
-    this.navigation.push('menu-content', { id: card.Guid });
+    this._pageUtils._navigation.push('menu-content', { id: card.Guid });
   }
 
   public async addNewMenuCard() : Promise<void>
   {
-    this.navigation.push('add-menu-card');
+    this._pageUtils._navigation.push('add-menu-card');
   }
 
-  ionViewWillEnter()
+  ionViewDidEnter()
   {
     this.menuCards = this.mcServ.entries;
     this.mcServ.getAll().subscribe(entries =>

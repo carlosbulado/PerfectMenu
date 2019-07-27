@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BasePage } from 'src/app/base.page';
-import { PerfectNavigation } from 'src/utils/perfect-navigation';
 import { MenuCard } from 'src/models/menucard';
 import { MenuCardService } from 'src/service/menucard.service';
-import { PerfectAlert } from 'src/utils/perfect-alert';
+import { PageUtil } from '../../utils/page-util';
 
 @Component({
   selector: 'page-menu-content',
@@ -16,27 +15,30 @@ export class MenuContentPage extends BasePage
 
   constructor
   (
-    protected navigation : PerfectNavigation,
-    protected menuCardService : MenuCardService,
-    protected _alerts : PerfectAlert
+    protected _pageUtils : PageUtil,
+    protected menuCardService : MenuCardService
   )
   {
-    super(navigation, _alerts);
+    super(_pageUtils);
     this.mc = new MenuCard();
   }
 
   ionViewWillEnter()
   {
-    let menuCardGuid = this.navigation.get('id');
-    if (menuCardGuid)
-    {
-      this.mc = this.menuCardService.getById(menuCardGuid);
-    }
+    let guid = this._pageUtils._navigation.get('id');
+    if (guid) this.menuCardService.getById(guid).subscribe(entry =>{
+      this.mc = entry;
+    });
   }
 
   public async editMenuCard() : Promise<void>
   {
-    this.navigation.push('add-menu-card', { id: this.mc.Guid });
+    this._pageUtils._navigation.push('add-menu-card', { id: this.mc.Guid });
+  }
+
+  public async close() : Promise<void>
+  {
+    await this._pageUtils._navigation.back();
   }
 
 }

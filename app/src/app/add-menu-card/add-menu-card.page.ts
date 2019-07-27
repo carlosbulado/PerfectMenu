@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { BaseCrudPage } from '../base-crud.page';
-import { PerfectNavigation } from 'src/utils/perfect-navigation';
 import { MenuCard } from 'src/models/menucard';
-import { MenuCardService } from 'src/service/menucard.service';
-import { ActivatedRoute } from '@angular/router';
-import { PerfectAlert } from 'src/utils/perfect-alert';
 import { ModalController } from '@ionic/angular';
 import { AddMenuItemComponent } from '../components/add-menu-item/add-menu-item.component';
+import { MenuItem } from 'src/models/menuitem';
+import { PageUtil } from '../../utils/page-util';
+import { MenuCardService } from 'src/service/menucard.service';
+import { EntityStatus } from 'src/models/entity';
 
 @Component({
   selector: 'page-add-menu-card',
@@ -17,24 +17,13 @@ export class AddMenuCardPage extends BaseCrudPage<MenuCard>
 {
   constructor
   (
-    protected navigation : PerfectNavigation,
+    protected _pageUtils : PageUtil,
     protected _service : MenuCardService,
-    protected activatedRoute : ActivatedRoute,
-    protected _alerts : PerfectAlert,
-    protected modalCtrl: ModalController
+    protected modalCtrl : ModalController
   )
   {
-    super(navigation, _service, activatedRoute, _alerts);
+    super(_pageUtils, _service);
     this.item = new MenuCard();
-  }
-
-  ionViewWillEnter()
-  {
-    let menuCardGuid = this.navigation.get('id');
-    if (menuCardGuid)
-    {
-      this.item = this._service.getById(menuCardGuid);
-    }
   }
 
   public async addNewItem() : Promise<void>
@@ -46,11 +35,43 @@ export class AddMenuCardPage extends BaseCrudPage<MenuCard>
         }
       });
     modal.onDidDismiss().then(data => {
+      console.log('Trying to add Menu Item: ', data);
       if (data !== null)
       {
-        console.log('The result:', data);
+        let menuItem = data['data'];
+        if(menuItem)
+          this.item._items.push(menuItem);
       }
    });
    await modal.present();
+  }
+
+  public async editItem(menuItem : MenuItem) : Promise<void>
+  {
+    let modal = await this.modalCtrl.create({ 
+        component: AddMenuItemComponent,
+        componentProps: {
+          menuCardId : this.item.Guid,
+          menuItem : menuItem
+        }
+      });
+    modal.onDidDismiss().then(data => {
+      console.log('Trying to edit Menu Item: ', data);
+   });
+   await modal.present();
+  }
+
+  public async removeItem(menuItem : MenuItem) : Promise<void>
+  {
+    await this._pageUtils._alerts.YesNoAlert('Want to delete?', 'This item will be deleted permanently!', 
+      function() {
+        menuItem.Status = EntityStatus.Inactive;
+      });
+  }
+
+  public getItemSubscribed(entry : MenuCard)
+  {
+    super.getItemSubscribed(entry);
+    if(!this.item._items) this.item._items = [];
   }
 }

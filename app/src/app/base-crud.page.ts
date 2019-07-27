@@ -1,9 +1,7 @@
 import { BasePage } from './base.page';
 import { Entity } from '../models/entity';
-import { PerfectNavigation } from '../utils/perfect-navigation';
 import { BaseService } from 'src/service/base.service';
-import { ActivatedRoute } from '@angular/router';
-import { PerfectAlert } from 'src/utils/perfect-alert';
+import { PageUtil } from '../utils/page-util';
 
 export abstract class BaseCrudPage<T extends Entity> extends BasePage
 {
@@ -12,30 +10,39 @@ export abstract class BaseCrudPage<T extends Entity> extends BasePage
 
     constructor
     (
-        protected navigation : PerfectNavigation,
-        protected _service : BaseService<T>,
-        protected activedRoute : ActivatedRoute,
-        protected _alerts : PerfectAlert
+        protected _pageUtils : PageUtil,
+        protected _service : BaseService<T>
     )
     {
-        super(navigation, _alerts);
+        super(_pageUtils);
         this.saveActionOption = 0;
+    }
+
+    ionViewDidEnter()
+    {
+        let guid = this._pageUtils._navigation.get('id');
+        if (guid) this._service.getById(guid).subscribe(entry => { this.getItemSubscribed(entry); });
+    }
+
+    public getItemSubscribed(entry : T)
+    {
+        this.item = entry;
     }
 
     public async save() : Promise<void>
     {
         let newItem = await this._service.save(this.item);
-        if (newItem) await this._alerts.okAlert('Saved', 'Item saved!');
+        if (newItem) await this._pageUtils._alerts.okAlert('Saved', 'Item saved!');
         switch(this.saveActionOption)
         {
             case 0:
-                this.navigation.back();
+                this._pageUtils._navigation.back();
                 break;
             case 1:
                 this.item = newItem;
                 break;
             case 2:
-                //this.navigation.push(this.activedRoute.snapshot.routeConfig. ._routerState.url);
+                //this._pageUtils._navigation.push(this.activedRoute.snapshot.routeConfig. ._routerState.url);
                 break;
         }
     }

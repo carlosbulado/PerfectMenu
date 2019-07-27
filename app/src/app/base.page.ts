@@ -1,10 +1,9 @@
 import { OnInit } from '@angular/core';
-import { PerfectNavigation } from 'src/utils/perfect-navigation';
-import { PerfectAlert } from 'src/utils/perfect-alert';
+import { PageUtil } from '../utils/page-util';
 
 export abstract class BasePage implements OnInit
 {
-    constructor(protected navigation : PerfectNavigation, protected _alerts : PerfectAlert) { }
+    constructor(protected _pageUtils : PageUtil) { }
 
     ngOnInit(): void { }
 }

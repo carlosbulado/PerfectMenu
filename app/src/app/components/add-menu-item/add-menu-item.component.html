@@ -14,7 +14,20 @@
 </ion-header>
 
 <ion-content>
-  <p>
-    add-menu-item works!
-  </p>
+  <ion-list lines="full" class="ion-no-margin ion-no-padding">
+    <ion-item>
+      <ion-label position="stacked">Name<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required type="text" [(ngModel)]="item.Name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Description<ion-text color="danger">*</ion-text></ion-label>
+      <ion-textarea required [(ngModel)]="item.Description" rows="6"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Price<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required type="number" [(ngModel)]="item.Price"></ion-input>
+    </ion-item>
+  </ion-list>
 </ion-content>

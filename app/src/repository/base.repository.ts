@@ -9,7 +9,9 @@ export abstract class BaseRepository<T extends Entity>
 {
     private entity: Observable<T[]>;
     private entityCollection: AngularFirestoreCollection<any>;
-    
+
+    public entries : T[];
+
     constructor
     (
         public TableName : string,
@@ -27,6 +29,11 @@ export abstract class BaseRepository<T extends Entity>
                 });
             })
         );
+
+        this.getAll().subscribe(allData => {
+            this.entries = allData;
+            console.log('SERVICE - INIT LIST OF ' + this.entries.toString());
+        });
     }
     
     public getAll(): Observable<T[]>
@@ -38,11 +45,13 @@ export abstract class BaseRepository<T extends Entity>
     public getById(guid : string): Observable<T>
     {
         console.log('REPOSITORY - GETTING RECORD BY ID FOR: ' + this.TableName);
-        return this.entityCollection.doc<T>(guid).valueChanges().pipe(
-            take(1),
-            map(obj => {
-                obj.Guid = guid;
-                return obj
+        console.log('REPOSITORY - GUID: ' + guid);
+        return this.afs.collection<T>(this.TableName, ref => ref.where('Guid', '==', guid).limit(1))
+        .valueChanges()
+        .pipe(
+            map(entries => {
+                this.loadFullObject(entries[0]);
+                return entries[0]
             })
         );
     }
@@ -51,13 +60,13 @@ export abstract class BaseRepository<T extends Entity>
     {
         console.log('REPOSITORY - ADDING ENTRY FOR: ' + this.TableName);
         this.removePropertiesForConnectingToFirebase(object);
-        return await this.entityCollection.add(object);
+        return await this.entityCollection.add(object.getData());
     }
     
     public async update(object : T): Promise<void>
     {
         console.log('REPOSITORY - UPDATING ENTRY FOR: ' + this.TableName);
-        let idForUpdate = object['id'];
+        let idForUpdate = this.entries.find(x => x.Guid == object.Guid)['id'];
         this.removePropertiesForConnectingToFirebase(object);
         return await this.entityCollection.doc(idForUpdate).update(object);
     }
@@ -65,7 +74,8 @@ export abstract class BaseRepository<T extends Entity>
     public async delete(guid : string): Promise<void>
     {
         console.log('REPOSITORY - DELETING ENTRY FOR: ' + this.TableName);
-        return await this.entityCollection.doc(guid).delete();
+        let idForDelete = this.entries.find(x => x.Guid == guid)[0]['id'];
+        return await this.entityCollection.doc(idForDelete).delete();
     }
 
     private removePropertiesForConnectingToFirebase (object : Object) : void
@@ -74,45 +84,12 @@ export abstract class BaseRepository<T extends Entity>
 
         for (let [key, value] of Object.entries(object))
         {
-            // if(value instanceof Array)
-            // {
-            //     delete object[key];
-            // }
             if(key.charAt(0) == '_')
             {
                 delete object[key];
             }
         }
     }
+
+    protected loadFullObject(entry : T) : Promise<void> { return }
 }
-
-/*
-
-*/
-
-/*
-// private _TableName : string;
-// public get TableName() : string { return this._TableName; }
-// public set TableName(v : string)
-// {
-//     this._TableName = v;
-//     this.db.TableName = v;
-// }
-
-// constructor(protected db : PerfectStorage) { }
-
-// // CREATE
-// public async addItem(item : Entity) : Promise<T> { return await this.db.addItem(item); }
-
-// // GETBYID
-// public async getById(guid : string) : Promise<T> { return null; }
-
-// // READ
-// public async getAll() : Promise<T[]> { return await this.db.getItems(); }
-
-// // UPDATE
-// public async updateItem(item : Entity) : Promise<T> { return await this.db.updateItem(item); }
-
-// // DELETE
-// public async deleteItem(guid : string) : Promise<T> { return await this.db.deleteItem(guid); }
-*/

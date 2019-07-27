@@ -19,6 +19,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken } from 'angularfire2/firestore';
 import { environment } from 'src/environments/environment';
 import { ComponentsModule } from './components/components.module';
+import { PipesModule } from 'src/pipes/pipes.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,7 +36,8 @@ import { ComponentsModule } from './components/components.module';
     RepositoryModule,
     UtilsModule,
     HttpClientModule,
-    ComponentsModule
+    ComponentsModule,
+    PipesModule
   ],
   providers:
   [

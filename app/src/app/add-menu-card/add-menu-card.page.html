@@ -33,5 +33,21 @@
         <ion-icon name="add"></ion-icon>
       </ion-button>
     </ion-item-divider>
+    <ion-list>
+      <ion-item-sliding #slidingItems *ngFor="let mItem of item._items">
+        <ion-item-options side="start" *ngIf="mItem.Status == 0">
+          <ion-item-option (ionSwipe)="removeItem(mItem);slidingItems.close();" (click)="removeItem(mItem);slidingItems.close();" color="danger">Delete</ion-item-option>
+        </ion-item-options>
+        <ion-item *ngIf="mItem.Status == 0">
+          <ion-label>
+            <h2>{{ mItem.Name }}</h2>
+            <p>Price: {{ mItem.Price }}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end" *ngIf="mItem.Status == 0">
+          <ion-item-option (ionSwipe)="editItem(mItem);slidingItems.close();" (click)="editItem(mItem);slidingItems.close();">Edit</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
   </ion-list>
 </ion-content>

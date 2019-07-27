@@ -62,6 +62,13 @@
     "typescript": "~3.1.6"
   },
   "description": "An Ionic project",
+  "config": {
+    "ionic_www_dir": "",
+    "ionic_source_map": "source-map",
+    "ionic_copy": "./config/copy.config.js",
+    "ionic_cleancss": "./config/cleancss.config.js",
+    "ionic_sass": "./config/sass.config.js"
+  },
   "cordova": {
     "plugins": {
       "cordova-sqlite-storage": {}

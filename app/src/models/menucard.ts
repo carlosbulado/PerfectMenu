@@ -8,4 +8,10 @@ export class MenuCard extends Entity
     public Image : string;
 
     public _items : MenuItem[];
+
+    constructor()
+    {
+        super();
+        this._items = [];
+    }
 }

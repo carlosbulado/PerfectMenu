@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PerfectNavigation } from './perfect-navigation';
 import { PerfectAlert } from './perfect-alert';
+import { UtilFunctions } from './util-functions';
+import { PageUtil } from './page-util';
 
 @NgModule({
     declarations: [],
@@ -9,7 +11,9 @@ import { PerfectAlert } from './perfect-alert';
     providers: 
     [
         PerfectNavigation,
-        PerfectAlert
+        PerfectAlert,
+        UtilFunctions,
+        PageUtil
     ],
     bootstrap: []
 })

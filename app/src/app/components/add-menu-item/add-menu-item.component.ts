@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { MenuItem } from 'src/models/menuitem';
 import { MenuItemService } from 'src/service/menuitem.service';
@@ -16,7 +16,7 @@ export class AddMenuItemComponent
   (
     private modalController: ModalController, 
     private navParams: NavParams,
-    private miServ : MenuItemService
+    // private miServ : MenuItemService
   )
   {
     this.item = new MenuItem();
@@ -25,8 +25,9 @@ export class AddMenuItemComponent
   public async ionViewWillEnter() : Promise<void>
   {
     let menuCardId = this.navParams.get('menuCardId');
-    let menuItemId = this.navParams.get('menuItemId');
-    if(menuItemId) this.item = await this.miServ.getById(menuItemId);
+    // let menuItemId = this.navParams.get('menuItemId');
+    // if(menuItemId) this.item = await this.miServ.getById(menuItemId);
+    if(this.navParams.get('menuItem')) this.item = this.navParams.get('menuItem');
     if(!this.item.MenuCardGuid) this.item.MenuCardGuid = menuCardId;
   }
 
