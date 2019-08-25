@@ -1,6 +1,5 @@
 import { Entity } from 'src/models/entity';
 import { BaseRepository } from 'src/repository/base.repository';
-import { Guid } from 'src/utils/guid';
 import { Observable } from 'rxjs';
 import { DocumentReference } from 'angularfire2/firestore';
 
@@ -22,7 +21,7 @@ export abstract class BaseService<T extends Entity>
     {
         return this._repository.getById(guid);
     }
-    
+
     public async save(object : T) : Promise<T>
     {
         try

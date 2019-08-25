@@ -2,23 +2,27 @@ import { Component } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { MenuItem } from 'src/models/menuitem';
 import { MenuItemService } from 'src/service/menuitem.service';
+import { BaseComponent } from 'src/app/base.component';
+import { PageUtil } from 'src/utils/page-util';
 
 @Component({
   selector: 'component-add-menu-item',
   templateUrl: './add-menu-item.component.html',
   styleUrls: ['./add-menu-item.component.scss'],
 })
-export class AddMenuItemComponent
+export class AddMenuItemComponent extends BaseComponent
 {
   public item : MenuItem;
 
   constructor
   (
+    protected _pageUtils : PageUtil,
     private modalController: ModalController, 
     private navParams: NavParams,
     // private miServ : MenuItemService
   )
   {
+    super(_pageUtils);
     this.item = new MenuItem();
   }
 

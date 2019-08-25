@@ -19,7 +19,7 @@
   <ion-card button (click)="cardClicked(card)" *ngFor="let card of menuCards">
     <ion-card-header>
       <ion-card-subtitle>{{ card.Title }}</ion-card-subtitle>
-      <ion-card-title>
+      <ion-card-title *ngIf="card.Image">
         <img src="assets/image/{{ card.Image }}">
       </ion-card-title>
     </ion-card-header>

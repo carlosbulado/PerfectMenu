@@ -25,6 +25,7 @@ export class MenuContentPage extends BasePage
 
   ionViewWillEnter()
   {
+    super.ionViewWillEnter();
     let guid = this._pageUtils._navigation.get('id');
     if (guid) this.menuCardService.getById(guid).subscribe(entry =>{
       this.mc = entry;

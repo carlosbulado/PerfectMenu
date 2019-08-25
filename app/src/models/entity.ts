@@ -3,6 +3,7 @@ import { Guid } from 'src/utils/guid';
 export class Entity
 {
     public Guid : string;
+    public CompanyGuid : string;
     public Status : EntityStatus;
     private _isNewEntry : boolean = false;
     public isNewEntry() : boolean { return this._isNewEntry; }
