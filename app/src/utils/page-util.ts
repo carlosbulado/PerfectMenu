@@ -15,7 +15,7 @@ export class PageUtil
         public _activedRoute : ActivatedRoute,
         public _utilFuncs : UtilFunctions,
         public _modalCtrl : ModalController,
-        public _storage : Storage
+        //public _storage : Storage
     )
     { }
 }

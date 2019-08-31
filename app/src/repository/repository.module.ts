@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MenuCardRepository } from './menucard.repository';
 import { MenuItemRepository } from './menuitem.repository';
+import { UserRepository } from './user.repository';
 
 @NgModule({
     declarations: [],
@@ -9,7 +10,8 @@ import { MenuItemRepository } from './menuitem.repository';
     providers: 
     [
         MenuCardRepository,
-        MenuItemRepository
+        MenuItemRepository,
+        UserRepository
     ],
     bootstrap: []
 })

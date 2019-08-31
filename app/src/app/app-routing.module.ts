@@ -7,6 +7,7 @@ import { ActivityPage } from './activity/activity.page';
 import { MenuCardPage } from './menu-card/menu-card.page';
 import { MenuContentPage } from './menu-content/menu-content.page';
 import { AddMenuCardPage } from './add-menu-card/add-menu-card.page';
+import { RegisterUserPage } from './register-user/register-user.page';
 
 const routes: Routes = [
   {
@@ -44,6 +45,11 @@ const routes: Routes = [
     path: 'add-menu-card',
     // loadChildren: './add-menu-card/add-menu-card.module#AddMenuCardPageModule'
     component: AddMenuCardPage
+  },
+  {
+    path: 'register-user',
+    //loadChildren: './register-user/register-user.module#RegisterUserPageModule'
+    component: RegisterUserPage
   }
 ];
 

@@ -1,95 +1,49 @@
 import { Injectable } from "@angular/core";
-import { AngularFirestoreCollection, AngularFirestore, DocumentReference } from 'angularfire2/firestore';
-import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Entity } from 'src/models/entity';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export abstract class BaseRepository<T extends Entity>
 {
-    private entity: Observable<T[]>;
-    private entityCollection: AngularFirestoreCollection<any>;
+  public entries: T[];
 
-    public entries : T[];
-
-    constructor
+  constructor
     (
-        public TableName : string,
-        protected afs : AngularFirestore
-    )
-    {
-        this.entityCollection = this.afs.collection<T>(TableName);
-        this.entity = this.entityCollection.snapshotChanges().pipe(
-            map(actions => {
-                return actions.map(a => {
-                const data = a.payload.doc.data();
-                const id = a.payload.doc.id;
-                console.log('REPOSITORY - READING INFO FOR: ' + this.TableName);
-                return { id, ...data } as T;
-                });
-            })
-        );
+      public TableName: string,
+      protected http: HttpClient
+    ) { }
 
-        this.getAll().subscribe(allData => {
-            this.entries = allData;
-            console.log('SERVICE - INIT LIST OF ' + this.entries.toString());
-        });
-    }
-    
-    public getAll(): Observable<T[]>
-    {
-        console.log('REPOSITORY - GETTING ALL RECORDS FOR: ' + this.TableName);
-        return this.entity;
-    }
-    
-    public getById(guid : string): Observable<T>
-    {
-        console.log('REPOSITORY - GETTING RECORD BY ID FOR: ' + this.TableName);
-        console.log('REPOSITORY - GUID: ' + guid);
-        return this.afs.collection<T>(this.TableName, ref => ref.where('Guid', '==', guid).limit(1))
-        .valueChanges()
-        .pipe(
-            map(entries => {
-                this.loadFullObject(entries[0]);
-                return entries[0]
-            })
-        );
-    }
-    
-    public async add(object : T): Promise<DocumentReference>
-    {
-        console.log('REPOSITORY - ADDING ENTRY FOR: ' + this.TableName);
-        this.removePropertiesForConnectingToFirebase(object);
-        return await this.entityCollection.add(object.getData());
-    }
-    
-    public async update(object : T): Promise<void>
-    {
-        console.log('REPOSITORY - UPDATING ENTRY FOR: ' + this.TableName);
-        let idForUpdate = this.entries.find(x => x.Guid == object.Guid)['id'];
-        this.removePropertiesForConnectingToFirebase(object);
-        return await this.entityCollection.doc(idForUpdate).update(object);
-    }
-    
-    public async delete(guid : string): Promise<void>
-    {
-        console.log('REPOSITORY - DELETING ENTRY FOR: ' + this.TableName);
-        let idForDelete = this.entries.find(x => x.Guid == guid)[0]['id'];
-        return await this.entityCollection.doc(idForDelete).delete();
-    }
+  public getAll(): Observable<any> {
+    console.log('REPOSITORY - GETTING ALL RECORDS FOR: ' + this.TableName);
+    return this.http.get('https://localhost:44309/api/' + this.TableName);
+  }
 
-    private removePropertiesForConnectingToFirebase (object : Object) : void
-    {
-        delete object['id'];
+  public getById(guid: string): Observable<any> {
+    console.log('REPOSITORY - GETTING RECORD BY ID FOR: ' + this.TableName);
+    console.log('REPOSITORY - GUID: ' + guid);
+    return this.http.get('https://localhost:44309/api/' + this.TableName + '/' + guid);
+  }
 
-        for (let [key, value] of Object.entries(object))
-        {
-            if(key.charAt(0) == '_')
-            {
-                delete object[key];
-            }
-        }
-    }
+  public add(object: T): Observable<any> {
+    console.log('REPOSITORY - ADDING ENTRY FOR: ' + this.TableName);
+    return this.save(object);
+  }
 
-    protected loadFullObject(entry : T) : Promise<void> { return }
+  public update(object: T): Observable<any> {
+    console.log('REPOSITORY - UPDATING ENTRY FOR: ' + this.TableName);
+    return this.save(object);
+  }
+
+  public save(object : T) : Observable<any> {
+    var headers = new HttpHeaders();
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
+    return this.http.post<T>('https://localhost:44309/api/' + this.TableName, object, { headers });
+  }
+
+  public delete(guid: string): Observable<any> {
+    console.log('REPOSITORY - DELETING ENTRY FOR: ' + this.TableName);
+    return this.http.delete<T>('https://localhost:44309/api/' + this.TableName + '/' + guid);
+  }
 }

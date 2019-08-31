@@ -4,3 +4,43 @@
 // styles are for the entire app and not just one component. Additionally, this 
 // file can hold Sass mixins, functions, and placeholder classes to be imported 
 // and used throughout the application.
+
+ion-toolbar
+{
+  text-align: center;
+}
+
+.page-container
+{
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+// ******************************************************************************************************** 
+// *************************************   Media Queties   ************************************************
+// ********************************************************************************************************
+@media (min-width: 768px)
+{
+  .page-container
+  {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px)
+{
+  .page-container
+  {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px)
+{
+  .page-container
+  {
+    width: 1170px;
+  }
+}

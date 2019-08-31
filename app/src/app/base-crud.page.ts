@@ -31,19 +31,20 @@ export abstract class BaseCrudPage<T extends Entity> extends BasePage
 
     public async save() : Promise<void>
     {
-        let newItem = await this._service.save(this.item);
-        if (newItem) await this._pageUtils._alerts.okAlert('Saved', 'Item saved!');
-        switch(this.saveActionOption)
-        {
-            case 0:
-                this._pageUtils._navigation.back();
-                break;
-            case 1:
-                this.item = newItem;
-                break;
-            case 2:
-                //this._pageUtils._navigation.push(this.activedRoute.snapshot.routeConfig. ._routerState.url);
-                break;
+      this._service.getAll().subscribe(x => console.log(x));
+      this._service.save(this.item).subscribe(item => {
+        if (item) this._pageUtils._alerts.okAlert('Saved', 'Item saved!');
+        switch (this.saveActionOption) {
+          case 0:
+            this._pageUtils._navigation.back();
+            break;
+          case 1:
+            this.item = item;
+            break;
+          case 2:
+            //this._pageUtils._navigation.push(this.activedRoute.snapshot.routeConfig. ._routerState.url)
+            break;
         }
+      });
     }
 }

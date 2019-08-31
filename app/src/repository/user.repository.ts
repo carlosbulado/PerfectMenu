@@ -1,13 +1,13 @@
 import { BaseRepository } from './base.repository';
-import { MenuItem } from 'src/models/menuitem';
 import { Injectable } from '@angular/core';
+import { User } from 'src/models/user';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class MenuItemRepository extends BaseRepository<MenuItem>
+export class UserRepository extends BaseRepository<User>
 {
   constructor(protected http: HttpClient)
     {
-        super('MenuItem', http);
+        super('User', http);
     }
 }

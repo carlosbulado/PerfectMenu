@@ -9,3 +9,11 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+ion-item
+{
+  --inner-border-width: 0px;
+  --show-inset-highlight: 0;
+  --border-width: 0px !important;
+  --show-full-highlight: 0;
+}

@@ -22,24 +22,22 @@ export abstract class BaseService<T extends Entity>
         return this._repository.getById(guid);
     }
 
-    public async save(object : T) : Promise<T>
+    public save(object : T) : Observable<T>
     {
         try
         {
-            if(!object.isNewEntry()) await this.update(object);
-            else await this.add(object);
+          if (!object.isNewEntry()) return this.update(object);
+          return this.add(object);
         }
         catch
         { 
-            await this.update(object);
+          return this.update(object);
         }
-        
-        return object;
     }
 
-    protected async add(object : T): Promise<DocumentReference> { return await this._repository.add(object); }
-    
-    protected async update(object : T): Promise<void> { return await this._repository.update(object); }
-    
-    public async delete(guid : string): Promise<void> { return await this._repository.delete(guid); }
+  protected add(object: T): Observable<T> { return this._repository.add(object); }
+
+  protected update(object: T): Observable<T> { return this._repository.update(object); }
+
+  public delete(guid : string): Observable<T> { return this._repository.delete(guid); }
 }

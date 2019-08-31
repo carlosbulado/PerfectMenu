@@ -12,13 +12,13 @@ export class MenuCardService extends BaseService<MenuCard>
     super(_repository);
   }
 
-  public async save(object : MenuCard) : Promise<MenuCard>
-  {
-    for(let item of object._items)
-    {
-      this.miServ.save(item);
-    }
-    super.save(object);
-    return object;
-  }
+  //public async save(object : MenuCard) : Promise<MenuCard>
+  //{
+  //  for(let item of object._items)
+  //  {
+  //    this.miServ.save(item);
+  //  }
+  //  super.save(object);
+  //  return object;
+  //}
 }
