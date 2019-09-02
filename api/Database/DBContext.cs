@@ -7,12 +7,28 @@ namespace api.Database
   {
     public DBContext(DbContextOptions<DBContext> options) : base(options) { }
 
-    public DbSet<User> Users { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+      this.CreateDbSets(modelBuilder);
+      //this.CreateQueries(modelBuilder);
+    }
+
+    #region BdSets
+    public DbSet<User> Users { get; set; }
+    private void CreateDbSets(ModelBuilder modelBuilder)
+    {
       modelBuilder.Entity<User>().ToTable("Users");
     }
+    #endregion
+
+    //#region DbQueries
+    //public DbQuery<User> QueryUsers { get; set; }
+    //private void CreateQueries(ModelBuilder modelBuilder)
+    //{
+    //  modelBuilder.Query<User>().ToView("Users");
+    //}
+    //#endregion
 
     //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     //{

@@ -48,12 +48,16 @@ namespace api
       }
 
       app.UseHttpsRedirection();
-      app.UseMvc();
+      //app.UseMvc();
+      app.UseMvc(routes =>
+      {
+        routes.MapRoute("default", "{controller}/{action}/{id?}");
+      });
     }
 
     public void ConfigServices(IServiceCollection services)
     {
-      services.AddScoped<Service.BaseService<Models.User>, Service.UserService>();
+      services.AddScoped<Service.Interface.IUserService, Service.UserService>();
     }
 
     public void ConfigDatabase(IServiceCollection services)

@@ -16,17 +16,21 @@
       <ion-label>Perfect Menu</ion-label>
     </ion-item>
     <ion-item>
-      <ion-input type="text" [(ngModel)]="user.Login" placeholder="Login"></ion-input>
+      <ion-input type="text" [(ngModel)]="user.login" placeholder="Login"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="password" [(ngModel)]="user.Pswrd" placeholder="Password"></ion-input>
+      <ion-input type="password" [(ngModel)]="user.pswrd" placeholder="Password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox slot="end" [(ngModel)]="rememberPswrd"></ion-checkbox>
+      <ion-label slot="end">Remember Password</ion-label>
     </ion-item>
     <ion-item>
       <ion-button slot="start" (click)="Register()">
-        <ion-icon name="person-add"></ion-icon> Register
+        <ion-icon name="person-add"></ion-icon>&nbsp;Register
       </ion-button>
       <ion-button slot="end" (click)="Login()">
-        Login <ion-icon name="log-in"></ion-icon>
+        Login&nbsp;<ion-icon name="log-in"></ion-icon>
       </ion-button>
     </ion-item>
   </ion-list>

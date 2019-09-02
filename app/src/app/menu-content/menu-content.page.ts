@@ -34,7 +34,7 @@ export class MenuContentPage extends BasePage
 
   public async editMenuCard() : Promise<void>
   {
-    this._pageUtils._navigation.push('add-menu-card', { id: this.mc.Guid });
+    this._pageUtils._navigation.push('add-menu-card', { id: this.mc.guid });
   }
 
   public async close() : Promise<void>

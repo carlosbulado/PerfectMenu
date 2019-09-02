@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { User } from 'src/models/user';
 import { UserRepository } from 'src/repository/user.repository';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserService extends BaseService<User>
@@ -11,8 +12,8 @@ export class UserService extends BaseService<User>
     super(_repository);
   }
 
-  public async getByLoginPswrd(login: string, pswrd: string): Promise<User>
+  public getByLoginPswrd(login: string, pswrd: string) : Observable<User>
   {
-    return null;
+    return this._repository.getByLoginPswrd(login, pswrd);
   }
 }

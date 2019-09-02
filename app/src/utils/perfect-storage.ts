@@ -47,7 +47,7 @@ export class PerfectStorage
 
     for (let i of items)
     {
-      if (i.Guid === item.Guid)
+      if (i.Guid === item.guid)
         newItems.push(item);
       else
         newItems.push(i);

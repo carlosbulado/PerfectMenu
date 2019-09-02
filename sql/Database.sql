@@ -18,6 +18,7 @@ BEGIN
   CREATE TABLE [Users]
   (
 	  [Guid] NVARCHAR(50),
+		[Status] INT,
 	  [Login] NVARCHAR(50),
 	  [Pswrd] NVARCHAR(50),
 	  [Name] NVARCHAR(100),

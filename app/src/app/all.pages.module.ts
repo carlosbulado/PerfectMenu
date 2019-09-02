@@ -5,7 +5,7 @@ import { MenuCardPageModule } from './menu-card/menu-card.module';
 import { MenuContentPageModule } from './menu-content/menu-content.module';
 import { ActivityPageModule } from './activity/activity.module';
 import { RegisterUserPageModule } from './register-user/register-user.module';
-import { RegisterUserPage } from './register-user/register-user.page';
+import { DashboardPageModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [],
@@ -17,7 +17,8 @@ import { RegisterUserPage } from './register-user/register-user.page';
     MenuCardPageModule,
     MenuContentPageModule,
     ActivityPageModule,
-    RegisterUserPageModule
+    RegisterUserPageModule,
+    DashboardPageModule
   ],
   providers: [],
   bootstrap: []

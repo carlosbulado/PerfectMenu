@@ -12,6 +12,7 @@ import { UserService } from 'src/service/user.service';
 export class HomePage extends BasePage
 {
   public user : User
+  public rememberPswrd : boolean;
 
   constructor(protected _pageUtils: PageUtil, protected userService: UserService)
   {
@@ -26,10 +27,13 @@ export class HomePage extends BasePage
 
   public async Login()
   {
-    var userLogged = await this.userService.getByLoginPswrd(this.user.Login, this.user.Pswrd);
-    if (userLogged)
-    {
-
-    }
+    this.userService.getByLoginPswrd(this.user.login, this.user.pswrd).subscribe(entry =>
+      {
+        if(entry) this._pageUtils._navigation.push('dashboard');
+        else
+        {
+          this._pageUtils._alerts.okAlert("Login", "Login or Password Incorrect");
+        }
+      })
   }
 }

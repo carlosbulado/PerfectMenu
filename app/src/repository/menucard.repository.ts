@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class MenuCardRepository extends BaseRepository<MenuCard>
 {
   constructor(protected http: HttpClient)
-    {
-        super('MenuCard', http);
-    }
+  {
+    super('MenuCard', http);
+  }
 }

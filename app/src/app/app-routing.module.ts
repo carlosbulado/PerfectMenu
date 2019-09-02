@@ -1,3 +1,4 @@
+import { DashboardPage } from './dashboard/dashboard.page';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { PipesModule } from 'src/pipes/pipes.module';
@@ -50,6 +51,11 @@ const routes: Routes = [
     path: 'register-user',
     //loadChildren: './register-user/register-user.module#RegisterUserPageModule'
     component: RegisterUserPage
+  },
+  {
+    path: 'dashboard', 
+    // loadChildren: './dashboard/dashboard.module#DashboardPageModule'
+    component: DashboardPage
   }
 ];
 

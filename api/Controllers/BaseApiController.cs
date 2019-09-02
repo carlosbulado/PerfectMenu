@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +9,9 @@ namespace api.Controllers
   [ApiController]
   public class BaseApiController<T> : ControllerBase where T : Models.Entity
   {
-    protected Service.BaseService<T> Service { get; set; }
+    protected Service.Interface.IBaseService<T> Service { get; set; }
 
-    public BaseApiController(Service.BaseService<T> _service)
+    public BaseApiController(Service.Interface.IBaseService<T> _service)
     {
       this.Service = _service;
     }
@@ -24,9 +25,9 @@ namespace api.Controllers
 
     // GET api/[controller]/5
     [HttpGet("{guid}")]
-    public async Task<T> Get(string guid)
+    public async Task<T> Get(Guid guid)
     {
-      return await this.Service.GetById(guid);
+      return await this.Service.GetById(guid.ToString());
     }
 
     // POST api/[controller]
@@ -44,7 +45,7 @@ namespace api.Controllers
 
     // DELETE api/[controller]/5
     [HttpDelete("{guid}")]
-    public void Delete(string guid)
+    public void Delete(Guid guid)
     {
     }
   }

@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using api.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace api.Service
 {
-  public class BaseService<T> where T : Models.Entity
+  public abstract class BaseService<T> : Interface.IBaseService<T> where T : Models.Entity
   {
     protected readonly Database.DBContext _context;
     protected DbSet<T> _Table { get; set; }

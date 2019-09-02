@@ -20,7 +20,7 @@ export class MenuCardPage extends BasePage
 
   public async cardClicked(card : MenuCard) : Promise<void>
   {
-    this._pageUtils._navigation.push('menu-content', { id: card.Guid });
+    this._pageUtils._navigation.push('menu-content', { id: card.guid });
   }
 
   public async addNewMenuCard() : Promise<void>

@@ -9,7 +9,12 @@
 
   <script>
     var correctionForPath = 'pm';
-   </script>
+    var pathForApi = location.origin + '/api/';
+    if(pathForApi == 'http://localhost:8100')
+    {
+      pathForApi = 'https://localhost:44309/api/'
+    }
+  </script>
 
   <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="format-detection" content="telephone=no" />

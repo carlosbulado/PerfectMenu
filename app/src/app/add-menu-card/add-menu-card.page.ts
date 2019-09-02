@@ -31,7 +31,7 @@ export class AddMenuCardPage extends BaseCrudPage<MenuCard>
     let modal = await this.modalCtrl.create({ 
         component: AddMenuItemComponent,
         componentProps: {
-          menuCardId : this.item.Guid
+          menuCardId : this.item.guid
         }
       });
     modal.onDidDismiss().then(data => {
@@ -51,7 +51,7 @@ export class AddMenuCardPage extends BaseCrudPage<MenuCard>
     let modal = await this.modalCtrl.create({ 
         component: AddMenuItemComponent,
         componentProps: {
-          menuCardId : this.item.Guid,
+          menuCardId : this.item.guid,
           menuItem : menuItem
         }
       });
@@ -65,7 +65,7 @@ export class AddMenuCardPage extends BaseCrudPage<MenuCard>
   {
     await this._pageUtils._alerts.YesNoAlert('Want to delete?', 'This item will be deleted permanently!', 
       function() {
-        menuItem.Status = EntityStatus.Inactive;
+        menuItem.status = EntityStatus.Inactive;
       });
   }
 

@@ -8,7 +8,7 @@ export class UtilFunctions
 
     public removeEntityFromArray(item : Entity, array : Array<Entity>)
     {
-        let index = array.findIndex(x => x.Guid == item.Guid);
+        let index = array.findIndex(x => x.guid == item.guid);
         array.splice(index, 1);
     }
 }
