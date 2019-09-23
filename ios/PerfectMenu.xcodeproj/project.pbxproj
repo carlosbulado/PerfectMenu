@@ -12,6 +12,18 @@
 		275D8CD023385B7E0017763B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 275D8CCE23385B7E0017763B /* Main.storyboard */; };
 		275D8CD223385B7F0017763B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 275D8CD123385B7F0017763B /* Assets.xcassets */; };
 		275D8CD523385B7F0017763B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 275D8CD323385B7F0017763B /* LaunchScreen.storyboard */; };
+		277D9B93233868B60049CE49 /* ServiceBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9B92233868B60049CE49 /* ServiceBase.swift */; };
+		277D9B95233868DC0049CE49 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9B94233868DC0049CE49 /* UserService.swift */; };
+		277D9B9A2338692C0049CE49 /* IServiceBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9B982338692C0049CE49 /* IServiceBase.swift */; };
+		277D9B9B2338692C0049CE49 /* IUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9B992338692C0049CE49 /* IUserService.swift */; };
+		277D9BA22338694D0049CE49 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9B9E2338694D0049CE49 /* UserRepository.swift */; };
+		277D9BA32338694D0049CE49 /* RepositoryBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9B9F2338694D0049CE49 /* RepositoryBase.swift */; };
+		277D9BA7233869720049CE49 /* IRepositoryBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9BA6233869720049CE49 /* IRepositoryBase.swift */; };
+		277D9BA8233869720049CE49 /* IUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9BA5233869720049CE49 /* IUserRepository.swift */; };
+		277D9BAB233869AB0049CE49 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9BAA233869AB0049CE49 /* Entity.swift */; };
+		277D9BAD233869B40049CE49 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9BAC233869B40049CE49 /* User.swift */; };
+		277D9BB423386A000049CE49 /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9BB023386A000049CE49 /* AlertUtil.swift */; };
+		277D9BB623386A000049CE49 /* SettingsUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9BB223386A000049CE49 /* SettingsUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +34,18 @@
 		275D8CD123385B7F0017763B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		275D8CD423385B7F0017763B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		275D8CD623385B7F0017763B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		277D9B92233868B60049CE49 /* ServiceBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBase.swift; sourceTree = "<group>"; };
+		277D9B94233868DC0049CE49 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		277D9B982338692C0049CE49 /* IServiceBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IServiceBase.swift; sourceTree = "<group>"; };
+		277D9B992338692C0049CE49 /* IUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IUserService.swift; sourceTree = "<group>"; };
+		277D9B9E2338694D0049CE49 /* UserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		277D9B9F2338694D0049CE49 /* RepositoryBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryBase.swift; sourceTree = "<group>"; };
+		277D9BA5233869720049CE49 /* IUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IUserRepository.swift; sourceTree = "<group>"; };
+		277D9BA6233869720049CE49 /* IRepositoryBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRepositoryBase.swift; sourceTree = "<group>"; };
+		277D9BAA233869AB0049CE49 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		277D9BAC233869B40049CE49 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		277D9BB023386A000049CE49 /* AlertUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
+		277D9BB223386A000049CE49 /* SettingsUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +78,90 @@
 		275D8CC923385B7E0017763B /* PerfectMenu */ = {
 			isa = PBXGroup;
 			children = (
+				277D9BAF233869F80049CE49 /* Utils */,
+				277D9BA92338699F0049CE49 /* Domain */,
+				277D9B912338682B0049CE49 /* Views */,
+				277D9B90233868220049CE49 /* Repositories */,
+				277D9B8F233868120049CE49 /* Services */,
 				275D8CCA23385B7E0017763B /* AppDelegate.swift */,
-				275D8CCC23385B7E0017763B /* ViewController.swift */,
 				275D8CCE23385B7E0017763B /* Main.storyboard */,
 				275D8CD123385B7F0017763B /* Assets.xcassets */,
 				275D8CD323385B7F0017763B /* LaunchScreen.storyboard */,
 				275D8CD623385B7F0017763B /* Info.plist */,
 			);
 			path = PerfectMenu;
+			sourceTree = "<group>";
+		};
+		277D9B8F233868120049CE49 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				277D9B97233869190049CE49 /* Interfaces */,
+				277D9B92233868B60049CE49 /* ServiceBase.swift */,
+				277D9B94233868DC0049CE49 /* UserService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		277D9B90233868220049CE49 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				277D9BA4233869650049CE49 /* Interfaces */,
+				277D9B9F2338694D0049CE49 /* RepositoryBase.swift */,
+				277D9B9E2338694D0049CE49 /* UserRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		277D9B912338682B0049CE49 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				277D9BAE233869D60049CE49 /* LoginPage */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		277D9B97233869190049CE49 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				277D9B982338692C0049CE49 /* IServiceBase.swift */,
+				277D9B992338692C0049CE49 /* IUserService.swift */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		277D9BA4233869650049CE49 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				277D9BA5233869720049CE49 /* IUserRepository.swift */,
+				277D9BA6233869720049CE49 /* IRepositoryBase.swift */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		277D9BA92338699F0049CE49 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				277D9BAA233869AB0049CE49 /* Entity.swift */,
+				277D9BAC233869B40049CE49 /* User.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		277D9BAE233869D60049CE49 /* LoginPage */ = {
+			isa = PBXGroup;
+			children = (
+				275D8CCC23385B7E0017763B /* ViewController.swift */,
+			);
+			name = LoginPage;
+			sourceTree = "<group>";
+		};
+		277D9BAF233869F80049CE49 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				277D9BB023386A000049CE49 /* AlertUtil.swift */,
+				277D9BB223386A000049CE49 /* SettingsUtil.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +235,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277D9BA8233869720049CE49 /* IUserRepository.swift in Sources */,
+				277D9B95233868DC0049CE49 /* UserService.swift in Sources */,
 				275D8CCD23385B7E0017763B /* ViewController.swift in Sources */,
+				277D9BA7233869720049CE49 /* IRepositoryBase.swift in Sources */,
+				277D9B9A2338692C0049CE49 /* IServiceBase.swift in Sources */,
 				275D8CCB23385B7E0017763B /* AppDelegate.swift in Sources */,
+				277D9BB423386A000049CE49 /* AlertUtil.swift in Sources */,
+				277D9B9B2338692C0049CE49 /* IUserService.swift in Sources */,
+				277D9BAB233869AB0049CE49 /* Entity.swift in Sources */,
+				277D9BAD233869B40049CE49 /* User.swift in Sources */,
+				277D9BA22338694D0049CE49 /* UserRepository.swift in Sources */,
+				277D9BA32338694D0049CE49 /* RepositoryBase.swift in Sources */,
+				277D9B93233868B60049CE49 /* ServiceBase.swift in Sources */,
+				277D9BB623386A000049CE49 /* SettingsUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
